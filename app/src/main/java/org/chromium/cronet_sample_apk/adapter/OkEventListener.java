@@ -51,7 +51,7 @@ class OkEventListener extends EventListener {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(" callId " + callId + " event " + name +
                 " toLastEvent " + String.valueOf(TimeUtils.now() - this.lastCheckPoint));
-        if (name.equals("callEnd")) {
+        if ("callEnd".equals(name)) {
             stringBuilder.append(" total " + String.valueOf(TimeUtils.now() - callStart));
         }
         Log.i(TAG, stringBuilder.toString());

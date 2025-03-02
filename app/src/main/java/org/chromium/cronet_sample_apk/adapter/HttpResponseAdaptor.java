@@ -1,6 +1,8 @@
 package org.chromium.cronet_sample_apk.adapter;
 
 import android.support.annotation.NonNull;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 
 import org.chromium.net.UrlResponseInfo;
 
@@ -39,7 +41,7 @@ public class HttpResponseAdaptor extends EngineTypeHelper {
     public URL getUrl() {
         if (isCronet()) {
             try {
-                return new URL(mCronetResponse.getUrl());
+                return Urls.create(mCronetResponse.getUrl(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             } catch (MalformedURLException e) {
                 throw  new RuntimeException();
             }
